@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+  <title>simple Adding Project</title>
+  <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+.logo {
+  margin: 0;
+}
+h2{
+    color: white;
+    text-align: center;
+}
+
+.night-mode-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg");
+  background-size: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+li{
+    color: white;
+    font-size: 20px;
+    background-color:rgb(105, 105, 105);
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bolder;
+    padding: 5px;
+
+}
+li:hover{
+    color: aqua;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.new-todo {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 70%;
+}
+
+.add-todo {
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-todo:hover {
+  background-color: #555;
+}
+
+/* Night Mode styles */
+.night-mode {
+  background-color: #333;
+  color: white;
+}
+
+.night-mode .navbar {
+  background-color: #111;
+}
+
+.night-mode .new-todo,
+.night-mode .add-todo {
+  background-color: #111;
+  color: white;
+  border: 1px solid #333;
+}
+
+.night-mode .add-todo:hover {
+  background-color: #222;
+}
+
+.cursor_area{
+    position: fixed;
+    left: 0;
+    top: 0;width: 100%;
+    height: 100vh;
+    /* pointer-events: none; */
+}
+.cursor{
+ position: fixed;
+ height: 60px;
+ width: 60px;
+ border-radius: 50%;
+ box-shadow: 0 0 0 5px rgba(255,255,255,1);
+ pointer-events: none;
+ z-index: 10000;
+ transition: all 0.5s ease-in-out;
+ animation: cursorAnim 0.5s;
+ animation-timing-function: linear;
+ animation-fill-mode: forwards;
+}
+
+@keyframes cursorAnim {
+
+    0%{
+        transform: scale(1);
+        box-shadow: 0 0 0 5px rgba(252, 253, 253, 0.504);
+    }
+    25%{
+        transform: scale(1.5);
+        box-shadow: 0 0 0 5px rgba(162, 228, 228, 0.8);
+    }
+    50%{
+        transform: scale(2);
+        box-shadow: 0 0 0 5px rgba(85, 224, 224, 0.5);
+    }
+    100%{
+        transform: scale(1);
+        box-shadow: 0 0 0 5px rgba(247, 248, 248, 0);
+    }
+}
+.middle{
+    font-weight: normal;
+}
+.middle:hover{
+    color: aqua;
+cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+    <div class="cursor_area">
+  <nav class="navbar">
+    <h1 class="logo">Lords_suraj</h1>
+    <h1 class="middle">Home</h1>
+    <h1 class="middle">Blog</h1>
+    <h1 class="middle">Contact</h1>
+    <button id="nightModeToggle" class="night-mode-toggle ">Dark Mode</button>
+  </nav>
+  
+  <div class="container">
+    <h2>Name Adder in List</h2>
+   
+    <input type="text" id="newTodo" class="new-todo" placeholder="Enter your Name Here">
+    <button id="addTodo" class="add-todo">Add</button>
+    <ul id="todoList" class="todo-list">
+        <!-- To-do items will be added dynamically here -->
+        <li>anythign awasome klasjflks</li>
+        <li>blah bla</li>
+   
+      </ul>
+  </div>
+</div>
+  <script>
+    let nightMode =false
+    let body = document.querySelector("body")
+    let nightModeToggleBTN = document.getElementById("nightModeToggle")
+    function nightModeToggle ( ) {
+        if(nightMode){
+            body.style.backgroundColor="white"
+            nightModeToggleBTN.innerText="Dark Mode"
+            nightMode=false
+        }else{https://www.w3schools.com/jsref/prop_element_classlist.asp
+       
+        body.style.backgroundColor ="rgb(36,41,47)"
+        nightModeToggleBTN.innerText="Light Mode"
+        nightMode=true
+      }
+    }
+    nightModeToggleBTN.addEventListener("click",nightModeToggle)
+
+
+    // add list here
+
+    const parentTodoList  =  document.getElementById("todoList")
+    const newTodo = document.getElementById("newTodo")
+    const addTodo = document.getElementById("addTodo")
+
+    let todoList = ["Farman Sir","Suraj","Ashu","Swastik","Sandy","Neeraj"]
+
+    function renderList (anything) {
+        let index = 1
+        parentTodoList.innerHTML =""
+        for(let list of anything){
+        let todoItem = document.createElement("li")
+        todoItem.innerText = index+" "+list
+        index++
+        parentTodoList.append(todoItem)
+        }
+    }
+    renderList(todoList)
+
+
+    addTodo.addEventListener("click",function(){
+        const valueofNewTodo =newTodo.value; // taking value of input
+        todoList.unshift(valueofNewTodo) // add to array
+        renderList(todoList) // render
+    })
+
+    $(Document).ready(function(){
+
+        $("body").mousemove(function (e) { 
+            var top =$(window).scrollTop() - $(this).offset().top +event.clientY
+            var left =$(window).scrollLeft() - $(this).offset().left +event.clientX
+            
+           setTimeout(function(){
+            $(".cursor_area").prepend('<div class="cursor"></div>');
+            $(".cursor").css({"left":left - 30, "top":top - 30})
+           })
+        setInterval(function(){
+            $(".cursor").eq(30).remove();
+        },5000)
+        })
+        });
+
+
+
+
+
+  </script>
+</body>
+</html>
